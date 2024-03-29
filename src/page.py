@@ -27,7 +27,7 @@ def main_page():
         """
         tz_europe = st.checkbox('Use Europe Central Time', value=False, help=timezone_help_msg)
         if tz_europe:
-            df['Datetime'] = df['Datetime'].dt.tz_localize('America/New_York')
+            df['Datetime'] = df['Datetime'].dt.tz_localize('America/New_York', ambiguous='infer')
             df['Datetime'] = df['Datetime'].dt.tz_convert('Europe/Brussels')
             latest_file_datetime = latest_file_datetime.astimezone(tz=pytz.timezone('Europe/Brussels'))
         else:
