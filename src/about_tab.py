@@ -4,6 +4,7 @@ import streamlit as st
 
 def write_about_tab(latest_file_datetime: datetime.datetime, latest_match: datetime.datetime):
     st.header('About')
+    st.markdown('[Source code](https://github.com/itai795/rencorner-stats)')
     st.subheader('Data retrieval')
     st.write(f'Latest data downloaded: {latest_file_datetime.replace(tzinfo=None)}')
     st.write(f'Latest recorded match: {latest_match.replace(tzinfo=None)}')
