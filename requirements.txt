@@ -1,4 +1,3 @@
-bokeh
-holoviews
-hvplot
+plotly
+pytz
 streamlit
