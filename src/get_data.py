@@ -27,6 +27,8 @@ def process_data(df: pd.DataFrame) -> pd.DataFrame:
     players_bins = np.array([0, 5, 10, 15, 20, 30, 40, 50, 60])
     df['PlayersBin'] = pd.cut(df['Players'], bins=players_bins)
     df['WinTeamBinary'] = df['WinTeam'].apply(lambda x: 0 if x == 'Nod' else 1)
+    df['Mode'] = df['Mode'].str.replace('AOW', 'All Out War')
+    df.drop(index=df.loc[~df['Mode'].isin(['Marathon', 'All Out War'])].index, inplace=True)
     df['ModeBinary'] = df['Mode'].apply(lambda x: 0 if x == 'All Out War' else 1)
     df['Map'] = df['Map'].str.replace('.mix', '', regex=False)
     df.rename(columns={'NodPoints': 'Nodpoints'}, inplace=True)
