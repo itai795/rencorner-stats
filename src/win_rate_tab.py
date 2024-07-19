@@ -40,7 +40,10 @@ def write_win_rate_tab(df: pd.DataFrame):
     df_grouped_map_and_mode.loc[df_grouped_map_and_mode['Mode'] == 'Marathon', 'Nod Mar'] = \
         df_grouped_map_and_mode.loc[df_grouped_map_and_mode['Mode'] == 'Marathon', 'Nod']
     df_grouped_map_and_mode.reset_index(drop=True, inplace=True)
-    df_grouped_map_and_mode.sort_values(by=['Mode', 'Nod'], inplace=True)
+
+    sort_by = st.selectbox('Sort maps by', options=['Win rate', 'Name'], index=0)
+    sort_by = {'Win rate': 'Nod', 'Name': 'Map'}[sort_by]
+    df_grouped_map_and_mode.sort_values(by=['Mode', sort_by], inplace=True)
 
     # Plot
     df_grouped_map_mara = df_grouped_map_and_mode.loc[df_grouped_map_and_mode['Mode'] == 'Marathon']
