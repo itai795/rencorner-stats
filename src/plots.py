@@ -79,7 +79,7 @@ def plot_players_over_time(df: pd.DataFrame):
     fig = go.Figure()
     fig.add_trace(go.Scatter(
         x=df_to_plot['Datetime'], y=df_to_plot['Players'],
-        hovertemplate='Players: %{y}' + '<br>Date: %{x}'
+        hovertemplate='Players: %{y}' + '<br>Date: %{x}', name=''
     ))
     fig.update_layout(title='Players last week', xaxis_title='Date and Time', yaxis_title='Player count')
     fig.update_xaxes(showgrid=True)
@@ -89,7 +89,7 @@ def plot_players_over_time(df: pd.DataFrame):
     fig = go.Figure()
     fig.add_trace(go.Scatter(
         x=df_to_plot['Datetime'], y=df_to_plot['Players'],
-        hovertemplate='Players: %{y}' + '<br>Date: %{x}'
+        hovertemplate='Players: %{y}' + '<br>Date: %{x}', name=''
     ))
     fig.update_layout(title='Players last week', xaxis_title='Date and Time', yaxis_title='Player count')
     fig.update_xaxes(showgrid=True)
@@ -144,13 +144,13 @@ def plot_win_rates(wr_df: pd.DataFrame, mode_display: str, gdi_win_rate: int):
     fig.add_trace(
         go.Bar(x=wr_df['Map'], y=wr_df['GDI'],
                marker={'color': 'goldenrod'},
-               hovertemplate='Map: %{x}' + '<br>Win Rate: %{y:.1f}', name=''),
+               hovertemplate='Map: %{x}' + '<br>Win Rate: %{y:.1f}', name='GDI'),
         row=2, col=1
     ),
     fig.add_trace(
         go.Bar(x=wr_df['Map'], y=wr_df['Nod'],
                marker={'color': 'darkred'},
-               hovertemplate='Map: %{x}' + '<br>Win Rate: %{y:.1f}', name=''),
+               hovertemplate='Map: %{x}' + '<br>Win Rate: %{y:.1f}', name='Nod'),
         row=2, col=1
     )
 
@@ -159,7 +159,7 @@ def plot_win_rates(wr_df: pd.DataFrame, mode_display: str, gdi_win_rate: int):
               f' {mode_display}, mean: {gdi_win_rate}-{100 - gdi_win_rate} (GDI-Nod)',
         barmode='stack', showlegend=False, height=600
     )
-    fig.update_xaxes(tickangle=80)
+    fig.update_xaxes(tickangle=80, nticks=wr_df['Map'].nunique())
 
     # adding grid lines (there is probably a better way to set it using builtin grid)
     for hline_height in range(10, 100, 10):
