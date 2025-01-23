@@ -40,7 +40,7 @@ def process_data(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def get_data() -> Tuple[pd.DataFrame, datetime.datetime]:
-    downloaded_data = [download_one_datafile(year) for year in [2021, 2022, 2023, 'recent']]
+    downloaded_data = [download_one_datafile(year) for year in [2021, 2022, 2023, 2024, 'recent']]
     # Uncomment following two lines to d/l one recent data file, for development
     # st.warning('downloading only recent data for development')
     # downloaded_data = [download_one_datafile(year) for year in ['recent']]
